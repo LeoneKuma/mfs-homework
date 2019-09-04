@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>码蜂社前端例子</title>
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+</head>
+<body>
+    <form action="/test" method="POST">
+        <div>
+            Email: <input type="email" name="email" required>
+        </div>
+        <div>
+            Number:<input type="number" name="number" max="100" min="0" step="2">
+        </div>
+        <div>
+           City:<input list="city">
+           <datalist id="city">
+               <option value="北京" label="beijing"></option>
+               <option value="上海"></option>
+               <option value="广州"></option>
+               <option value="深圳"></option>
+           </datalist>
+        </div>
+        <div>
+            <button>提交</button>
+        </div>
+    </form>
+</body>
+</html>
