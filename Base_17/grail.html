@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      .container{
+          display: flex;
+          flex-wrap: wrap;
+          width:1000px;
+          height: 600px;
+          border: 2px solid black;
+          justify-content:space-between;
+          align-items: center;
+          align-content: space-between;
+          
+      }
+      .mainitem{
+          order: 2;
+          flex-grow: 1;
+          flex-shrink: 1;
+          margin: 0 15px;
+          background: #0066FF;
+          text-align: center;
+          line-height: 380px;
+         
+
+      }
+      .topitem{
+          order: 0;
+          width: 1000px;
+          height: 100px;
+          background: grey;
+          text-align: center;
+          line-height: 100px;
+
+      }
+      .bottomitem{
+          order: 4;
+          width: 1000px;
+          height: 100px;
+          background: grey;
+          text-align: center;
+          line-height: 100px;
+      }
+      .leftitem{
+          order: 1;     
+      }
+      .rightitem{
+          order: 3;
+      }
+      .leftitem,.rightitem{
+          flex-basis: 200px;
+          height: 380px;
+          flex-grow: 0;
+          flex-shrink: 0;
+          background: #448CBB;
+          text-align: center;
+          line-height: 400px;
+      }
+    </style>
+</head>
+<body>
+    <div class="container">
+      <div class="mainitem">主要内容栏</div>
+      <div class="topitem">顶部</div>
+      <div class="bottomitem">底部</div>
+      <div class="leftitem">侧边栏1</div>
+      <div class="rightitem">侧边栏2</div>
+    </div>
+</body>
+</html>

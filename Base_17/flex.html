@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      .box.container{
+          width: 500px;
+          height: 800px;
+          display: flex;
+          justify-content: space-around;
+          flex-wrap: wrap;
+          align-items: center;
+          align-content: space-around;
+          background: black;
+      }
+      .inner.container{
+          width: 200px;
+          height: 200px;
+          display: flex;
+          background: white;
+          border: 2px solid grey;
+          border-radius: 10%;
+
+      }
+      .item{
+          background: black;
+          border: 2px solid black;
+          border-radius: 50%;
+          margin: 10px;
+          width: 30px;
+          height: 30px;
+         
+
+      }
+      .inner.container.no1 {
+          justify-content: center;
+          align-items: center;
+
+      }
+      .inner.container.no2{
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        
+      }
+      .no2 .point1{
+          align-self: flex-start;
+      }
+      .no2 .point2{
+          align-self: flex-end;
+      }
+    .inner.container.no3{
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .no3 .point1{
+        align-self: flex-start;
+    }
+    .no3 .point2{
+        align-self: center;
+    }
+    .no3 .point3{
+        align-self: flex-end;
+    }
+    .inner.container.no4{
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items:center;
+        align-content: space-between;
+    }
+    .no4 .item{
+        margin: 20px 20px;
+    }
+    .inner.container.no5{
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items:center;
+        align-content: space-between;
+    }
+    .no5 .item{
+        margin: 20px 20px;
+    }
+    .no5 .point3{
+        margin: 10px 83px;
+    }
+    .inner.container.no6{
+        flex-direction: column;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items:center;
+        align-content: space-between;
+    }
+    
+
+    
+          
+    </style>
+</head>
+<body>
+    <div class="box container">
+        <div class="inner container no1">
+            <div class="item"></div>
+        </div>
+        <div class="inner container no2">
+                <div class="item point1"></div>
+                <div class="item point2"></div>
+        </div>
+        <div class="inner container no3">
+                <div class="item point1"></div>
+                <div class="item point2"></div>
+                <div class="item point3"></div>
+                
+        </div>
+        <div class="inner container no4">
+                <div class="item point1"></div>
+                <div class="item point2"></div>
+                <div class="item point3"></div>
+                <div class="item point4"></div>
+
+        </div>
+        <div class="inner container no5">
+                <div class="item point1"></div>
+                <div class="item point2"></div>
+                <div class="item point3"></div>
+                <div class="item point4"></div>
+                <div class="item point5"></div>
+        </div>
+        <div class="inner container no6">
+                <div class="item point1"></div>
+                <div class="item point2"></div>
+                <div class="item point3"></div>
+                <div class="item point4"></div>
+                <div class="item point5"></div>
+                <div class="item point6"></div>
+        </div>
+
+    </div>
+    
+</body>
+</html>
