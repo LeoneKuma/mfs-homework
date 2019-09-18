@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      div.container{
+          width: 230px;
+          height:100px;
+          border: 1px solid black;
+          margin: 100px auto;
+          border-radius: 10px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          
+      }
+      
+      div.English{
+          font-size: 12px;
+          font-weight: 500;
+      }
+      div.Chinese{
+          font-size: 28px;
+          margin-top: 5px;
+          font-weight: 500;
+      }
+      
+      div.graph.circle{
+          background: #ffe502;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          position: absolute;
+          top: 30px;
+          left: -20px;
+          z-index: 1;
+      }
+      div.graph.triangle{
+          border: 20px solid transparent;
+          border-right-color: #ffe502;
+          transform: rotate(-16deg);
+          position: absolute;
+          top: -15px;
+          right: 20px;
+          
+
+      }
+      
+    </style>
+</head>
+<body>
+    <div class="title container">
+        <div class="content English">SHARED COURSE</div>
+        <div class="content Chinese">课程分享</div>
+        <div class="graph circle"></div>
+        <div class="graph triangle"></div>
+    </div>
+</body>
+</html>
