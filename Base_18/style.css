@@ -1,0 +1,370 @@
+
+body{
+    margin: 0px;
+    background: #ebebeb;
+}
+*::selection{
+    background: #f4645f;
+    color:white;
+}
+
+header{
+    background-image: url(https://www.golaravel.com/assets/images/header-bg.jpg);
+    height: 200px;
+    background-origin: padding-box;
+    background-position: 30% 20%;
+    padding: 62px 0px;    
+    background-size: cover;
+    
+}
+h1 {
+    width: 1000px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+h1 svg{
+    width: 140px;   
+}
+h1 span{
+    font-size: 30px;
+    color: white;
+    font-weight: 400;
+    margin:40px 0px;
+}
+nav{
+    display: flex;
+    justify-content: center;
+    height: 56px;
+    border-bottom: 2px solid #e1e1e1;
+    background: white;
+}
+nav a{
+    text-decoration: none;
+    color: #505050;
+    font-size: 14px;
+    text-align: center;
+    padding: 20px 
+}
+nav a.important{
+    font-weight: 700;
+}
+nav a:hover{
+    color:#f4645f;
+
+}
+
+section.container{
+    display: flex;
+    
+    justify-content: center;
+
+}
+section main.container{
+    display: flex;
+    width: 740px;
+    
+    /* background: #f4645f; */
+    margin: 35px 30px;
+    
+    flex-direction: column;
+    
+}
+section aside.container{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    
+    /* background: #f4645f; */
+    margin:35px 0px;
+
+
+}
+section main article{
+    width: 670px;
+    /* height: 800px; */
+    background: white;
+    margin-bottom: 35px;
+    padding: 35px;
+}
+section main article h1 {
+    width: 680px;
+    height: 40px;
+    font-size: 28px;
+    font-weight: 400;
+    margin: 0px auto;
+    text-align: center;
+    
+    
+}
+section main article h1 a{
+    text-decoration: none;
+    color: #303030;
+}
+.post-meta{
+    height: 24px;
+    width: 680px;
+    margin: 15px auto;
+    text-align: center;
+    font-size: 14px;
+    color: #959595;
+}
+
+article a{
+    color: #F4647B;
+    text-decoration: none;
+    
+}
+.post-meta .author a:hover{
+    text-decoration: underline;
+}
+.featured-media{
+    width: 680px;
+    margin-top: 30px;
+}
+.featured-media img{
+    width: 100%;
+}
+.post-content{
+    margin: 30px 0px;
+}
+.post-content p{
+    width: 680px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #444443;
+
+}
+.post-content a{
+    margin:0px -5px;
+}
+.post-content a:hover{
+    text-decoration: underline;
+    text-decoration-color: rgba(0,0,0,.8);
+}
+.post-permalink{
+    width: 680px;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 40px;
+}
+.post-permalink a.btn{
+    background: #f4645f;
+    color: white;
+    border: 1px solid #f4645f;
+    border-radius: 2px;
+    padding: 7px 14px;
+}
+.post-permalink a.btn:hover{
+    background: rgb(48, 48, 48);
+    border: 1px solid rgb(48, 48, 48);
+}
+.post-footer{
+    width: 680px;
+    padding-top: 21px;
+    border-top: 1px solid rgb(235,235,235);
+    margin-top: 30px;
+}
+
+
+main .pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+main .pagination span,main .pagination a.nextpage{
+    background: #f4645f;
+    color: white;
+    padding: 0px 14px;
+    margin: 0px 3px;
+    border: 1px solid #F4647B;
+    border-radius: 2px;
+    font-size: 14px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+
+
+}
+main .pagination a.nextpage{
+    text-decoration: none;
+    
+    
+
+}
+.aside .widget{
+    width: 300px;
+    height: 600px;
+    padding: 21px 30px;
+    background: white;
+    margin-bottom: 35px;
+}
+.aside .widget h4{
+    margin: 0px;
+    
+    margin-bottom: 21px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid rgb(235,235,235);
+    font-size: 21px;
+    font-weight: 400;
+    position: relative;
+}
+.aside .widget h4::after{
+    content: "";
+    height: 1px;
+    width: 90px;
+    background: #f4645f;
+    position: absolute;
+    left: 0px;
+    bottom: -2px;
+
+}
+.aside .widget a{
+    display: block;
+    height: 20px;
+    width: 270px;
+    padding: 7px 14px;
+    border: 1px solid rgb(244, 100, 95);
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    background: rgb(244, 100, 95);
+    margin-bottom: 6px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 2px;
+}
+.aside .widget a:hover{
+    background: #303030;
+    border: 1px solid #303030;
+}
+
+footer.footer{
+    background: #202020;
+    color: #959595;
+    padding-top: 35px;
+
+}
+
+footer .container{
+    width: 1170px;
+    padding: 0px 15px;
+    margin: 0px auto;
+    display: flex;
+    justify-content: space-between;
+    
+
+}
+footer.footer .widget{
+    width: 300px;
+    padding: 0 30px;
+    margin-bottom: 35px;
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+footer.footer h4.title{
+    color: white;
+    font-size: 21px;
+    font-weight: 400;
+    padding-bottom: 7px;
+    border-bottom: 1px solid #303030;
+    margin-bottom: 21px;
+    margin-top: 0px;
+    position: relative;
+}
+footer.footer h4.title::after{
+    
+    content: "";
+    height: 1px;
+    width: 90px;
+    background: #f4645f;
+    position: absolute;
+    left: 0px;
+    bottom: -2px;
+
+}
+.footer div.content{
+    border-bottom: 1px dashed #303030;
+}
+.footer div.content.recent-post a{
+    font-size: 14px;
+    margin-top: 10px;
+    color: #959595;
+    text-decoration: none;
+    display: block;
+
+}
+.footer div.content.recent-post a:hover{
+    color: #f4645f;
+}
+.footer div.content.recent-post div.date{
+    height: 24px;
+    margin-top: 6px;
+    margin-bottom: 10px;
+    color:rgb(80,80,80);
+    font-size: 14px;
+
+}
+.footer a.tag-cloud{
+    width: 12px;
+  
+    padding: 2px 7px 4px 7px;
+    margin: 0px 7px 7px 0px;
+    text-align: center;
+    color: #959595;
+    text-decoration: none;
+    
+    border: 1px solid #303030;
+
+}
+.footer a.tag-cloud:hover{
+    background: #f4645f;
+    color: white;
+    border: 1px solid #F4647B
+    
+}
+.footer div.content.friend-links{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0px 0px 10px 0px;
+    margin-bottom: 0px;
+}
+.footer div.content.friend-links:last-child{
+    border-bottom: none;
+}
+.footer div.content.friend-links a{
+    font-size: 14px;
+    text-align: center;
+    color: #959595;
+    text-decoration: none;
+    padding:5px 10px;
+    margin: 2px 0px;
+}
+.footer div.content.friend-links a:hover{
+    background: #f4645f;
+    color: white;
+   
+}
+.copyright{
+    border-top: 1px solid rgb(48, 48, 48);
+    background: #111;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(85,85,85);
+    font-size: 13px;
+}
+.copyright a{
+    text-decoration: none;
+    font-size: 13px;
+    color: rgb(85,85,85);
+}
+.copyright a:hover{
+    text-decoration: underline;
+}
+
