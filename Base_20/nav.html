@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+            align-content: flex-start;
+            margin: 15px 20px;
+            background: #f8f8f8;
+            border: 1px solid #e7e7e7;
+            border-radius: 5px;
+        }
+
+        .item:nth-of-type(2) {
+            background: #e7e7e7;
+        }
+
+        .item.dropdown{
+            position: relative;
+            cursor: pointer;
+        }
+        .item.dropdown span{
+            padding-left: 15px;
+            padding-right: 30px;
+        }
+
+        .item.dropdown:focus {
+            background: #e7e7e7;
+            outline-color: #e7e7e7;
+        }
+
+        .item.item.dropdown:focus .list_container{
+            display: flex;
+        }
+        
+
+        .item.dropdown::after {
+            content: "";
+            border: 5px solid transparent;
+            border-top-color: inherit;
+            position: absolute;
+            top:24px;
+            left:50px;
+        }
+
+        .item {
+           
+            line-height: 50px;
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+        }
+
+        .item a {
+            padding: 0px 15px;
+            font-size: inherit;
+            color: inherit;
+            text-decoration: none;
+
+        }
+
+        .item:first-of-type a {
+            font-size: 18px;
+        }
+
+        .item:hover {
+            color: rgb(51, 51, 51);
+        }
+        .list_container{
+            position: absolute;
+            display: none;
+            flex-wrap: wrap;
+            flex-direction: column;
+            border:1px solid rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            width: 160px;
+            background: white;
+            top: 52px;
+            left: 0px;
+            
+        }
+        div.item_group{
+            position: relative;
+            border-top: 1px solid #e7e7e7;
+            
+        }
+        
+        a.listitem{
+            display: block;
+            line-height: 30px;
+            justify-content: flex-start;
+            text-align: start;
+            font-size: 14px;
+            padding:5px 30px;
+            text-decoration: none;
+            color: rgb(38, 38, 38);
+        }
+        a.listitem:hover{
+            background: rgb(245, 245, 245);
+
+        }
+        @media  screen and (max-width: 800px){
+            .container{
+                flex-wrap: wrap;
+
+            }
+            .item{
+                width: 100%;
+                text-align: start;
+            }
+            
+            .list_container{
+                display: flex;
+                position: static;
+                border: none;
+                background: transparent;
+                width: 100%;
+            }
+            a.listitem{
+                color: #777;
+                background: transparent;
+            }
+            a.listitem:hover{
+                color: rgb(51, 51, 51);
+                background: transparent;
+            }
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="item"><a href="">菜鸟教程</a></div>
+        <div class="item"><a href="">iOS</a> </div>
+        <div class="item"><a href="">SVN</a></div>
+        <div class="item dropdown" tabindex="1">
+            <span>Java</span>
+                <div class="list_container">
+                        <div class="item_group">
+                            <a href="" class="listitem">jmeter</a>
+                            <a href="" class="listitem">EJB</a>
+                            <a href="" class="listitem">Jasper Report</a>
+                        </div>
+                        <div class="item_group">
+                            <a href="" class="listitem">分离的链接</a>
+                        </div>
+                        <div class="item_group">
+                            <a href="" class="listitem">另一个分离的链接</a>
+                        </div>
+                    </div>
+                    
+        </div>
+    </div>
+</body>
+
+</html>
