@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .main {
+            background: grey;
+            flex-grow: 1;
+        }
+
+        .sub {
+            width: 200px;
+            background: brown;
+            order: -1;
+
+        }
+
+        .extra {
+            width: 200px;
+            background: yellow;
+        }
+
+        #bd {
+            display: flex;
+            background: blanchedalmond;
+        }
+
+        #bd-two {
+            height: 300px;
+            background: blanchedalmond;
+            /* display: flex;
+            align-items: center;
+            flex-wrap: wrap; */
+        }
+
+        div.normal {
+            width: 100%;
+            background: brown;
+            height: 200px;
+        }
+
+        div.test {
+            height: 100px;
+            width: 200px;
+            background: grey;
+            border: 5px solid red;
+
+        }
+
+        div.first {
+            margin-left: -100%;
+
+        }
+
+        div.second {
+            /* margin-left:-300px; */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div id="bd">
+        <div class="main">main</div>
+        <div class="sub">sub</div>
+        <div class="extra">extra</div>
+    </div> -->
+    <div id="bd-two">
+        <div class=normal></div>
+        <div class="test first">test1</div>
+        <div class="test second">test2</div>
+    </div>
+
+</body>
+
+</html>

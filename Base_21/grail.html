@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        /* margin: 0px; */
+    }
+    .container{
+        background: whitesmoke;
+        padding: 0 200px 0 150px;
+    }
+    .main{
+        width: 100%;
+        float: left;
+        height: 500px;
+        background:  yellowgreen;
+    }
+    .left.aside{
+        width: 150px;
+        float: left;
+        height: 200px;
+        background:  brown;
+        margin-left: -100%;
+        position: relative;
+        left: -150px;
+    }
+    .right.aside{
+        width: 200px;
+        float: left;
+        height: 200px;
+        background:  goldenrod;
+        margin-left: -200px;
+        position: relative;
+        right: -200px;
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="main">main</div>
+        <div class="left aside">left</div>
+        <div class="right aside">right</div>
+    </div>
+</body>
+</html>

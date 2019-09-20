@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0px;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .main {
+            flex-grow: 1;
+            height: 500px;
+            background: yellowgreen;
+        }
+
+        .left.aside {
+            width: 150px;
+            height: 200px;
+            background: brown;
+            order: -1;
+
+        }
+
+        .right.aside {
+            width: 200px;
+            height: 200px;
+            background: goldenrod;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="main">main</div>
+        <div class="left aside">left</div>
+        <div class="right aside">right</div>
+    </div>
+
+</body>
+
+</html>
