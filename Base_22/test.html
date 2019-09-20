@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      div{
+          display: inline-block;
+          width: 100px;
+          height: 100px;
+          background: black;
+          transition: transform 1s, height 1s, width 1s;
+          /* animation: ani1 1s infinite;
+          animation: ani2 1s infinite; */
+          
+
+          
+      }
+      div:hover{
+          transform: translate(50px,0px);
+          width: 200px;
+          height: 200px;
+          
+      }
+      @keyframes ani1{
+          0%{
+            transform: translateX(0px)
+          }
+          50%{
+            transform: translateX(100px);
+          }
+          100%{
+            transform: translateX(0px);
+
+          }
+      }@keyframes ani2{
+          0%{
+            width: 100px;
+
+          }
+          50%{
+            width: 200px;
+          }
+      
+          100%{
+            width: 100px;
+          }
+      }
+    </style>
+</head>
+
+<body>
+    <div>
+    </div>
+    
+</body>
+</html>
