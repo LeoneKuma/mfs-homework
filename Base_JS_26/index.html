@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        textarea#text_input{
+            display: block;
+        }
+        button{
+            width: 100px;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+            background:burlywood;
+            border-radius: 10px;
+        }
+        div#text_output{
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <textarea rows="5" cols="50" id="text_input"></textarea>
+    <button onclick="f()">首字母大写</button>
+    <div id="text_output"></div>
+    
+    <script>
+    function f(){
+        var text=document.getElementById("text_input").value.toString();
+        if(text==""){
+            document.getElementById("text_output").innerHTML="请输入字符串!";
+            return;
+        }
+        var strArray=text.split(" ");
+        var newStr="";
+         for(i=0;i<strArray.length;i++){
+            var word=strArray[i][0].toLocaleUpperCase()+strArray[i].slice(1);
+             newStr+=word;
+             if(i+1<strArray.length){
+                newStr+=" ";
+             }
+            
+         }
+         document.getElementById("text_output").innerHTML=newStr;
+    }        
+    </script>
+</body>
+</html>
