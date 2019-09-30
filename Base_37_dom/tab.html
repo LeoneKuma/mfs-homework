@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./tapStyle.css">
+    <script src="./tapJS.js"></script>
+    <style>
+    </style>
+</head>
+
+<body>
+    <div class="container taps">
+        <div class="tap" index="0">ITEM ONE</div>
+        <div class="tap" index="1">ITEM TWO</div>
+        <div class="tap" index="2">ONACTIVE</div>
+        <div class="tapline"></div>
+    </div>
+    <div class="container texts">
+        <div class="text">
+            <h2>Tab One</h2>
+            <p>This is an example tab.</p>
+        </div>
+        <div class="text">
+            <h2>Tab Two</h2>
+            <p>This is another example tab.</p>
+        </div>
+        <div class="text">
+            <h2>Tab Three</h2>
+            <p>This is a third example tab.</p>
+        </div>
+    </div>
+    <script>
+        var taps = document.getElementsByClassName("tap");
+        var tapNums = taps.length;
+        for (var i = 0; i < tapNums; i++) {
+            taps[i].addEventListener("click", moveTapline);
+            taps[i].addEventListener("click", clickTap);
+        }
+        taps[2].addEventListener("click",function(){
+            alert("A tab with this route property /home was activated.");
+            
+        });
+    </script>
+</body>
+
+</html>

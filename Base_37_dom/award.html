@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div.container {
+            margin: 0 auto;
+            margin-top: 200px;
+            width: 250px;
+            display: flex;
+            flex-wrap: wrap;
+            text-align: center;
+
+        }
+
+        div#award {
+            height: 50px;
+            width: 100%;
+            line-height: 50px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        div.action {
+            height: 40px;
+            width: 100%;
+        }
+
+        button {
+            height: 40px;
+            width: 46%;
+            text-align: center;
+            line-height: 20px;
+            font-size: 15px;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div id="award">点击“开始“按钮，开始抽奖！</div>
+        <div class="action">
+            <button id="start">开 始</button>
+            <button id="stop">停 止</button>
+        </div>
+    </div>
+    <script>
+        var startBtn = document.getElementById("start");
+        var stopBtn = document.getElementById("stop");
+        var resultEle=document.getElementById("award");
+        var time=null;
+        function start() {
+            time=setInterval(
+                function(){
+                    //取0-99的随机数
+                    var num=Math.floor(Math.random()*100); 
+                    if(num==0){
+                        resultEle.innerText="特等奖";
+                        return;
+                    }
+                    else if(num>=1&&num<=10){
+                        resultEle.innerText="一等奖";
+                        return;
+                    }
+                    else if(num>=11&&num<=40){
+                        resultEle.innerText="二等奖";
+                        return;
+                    }
+                    else if(num>=41&&num<=80){
+                        resultEle.innerText="三等奖";
+                        return;
+                    }
+                    else{
+                        resultEle.innerText="鼓励奖";
+                        return;
+                    }
+                }
+            ,20);
+
+        }
+        function stop() {
+            clearInterval(time);
+        }
+
+        startBtn.addEventListener("click",start);
+        stopBtn.addEventListener("click",stop);
+    </script>
+</body>
+
+</html>

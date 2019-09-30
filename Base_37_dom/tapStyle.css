@@ -1,0 +1,50 @@
+.container.taps{
+    margin-left: 200px;
+    height: 47px;
+    width: 900px;
+    display: flex;
+    background: rgb(0, 188, 212);
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start；
+}
+div.tap{
+    height: 45px;
+    width: 300px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    line-height: 45px;
+}
+
+div[class=tapline]{
+    width: 33.3%;
+    height: 2px;
+    background: rgb(255, 64, 129);
+    transition: transform 0.8s;
+    
+}
+/* div.tapline_1{
+    transform: translateX(300px);
+}
+div.tapline_2{
+    transform: translateX(600px);
+} */
+div.container.texts{
+    margin-left: 200px;
+    width: 900px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.1)
+}
+div.text{
+    display:none;
+    width: 33.3%;  
+}
+div.text:nth-child(1){
+    display: block;
+}
+
