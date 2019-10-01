@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="signup" action="#" target="_blank" onsubmit="return onSignupFormSubmit()">
+        <p id="signup-error" style="color:red"></p>
+        <p>
+            用户名:
+            <input id="username" type="text" name="username">
+        </p>
+        <p>
+            口令:
+            <input type="password" id="password" name="password">
+        </p>
+        <p>
+            重复口令:
+            <input type="password" id="password-2">
+        </p>
+        <p>
+            <button type="submit">提交</button>
+            <button type="reset">重置</button>
+        </p>
+    </form>
+    <script>
+        var signupErrorEle=document.getElementById("signup-error");
+        var userNameEle=document.getElementById("username");
+        var passWordEle=document.getElementById("password");
+        var passWordAgainEle=document.getElementById("password-2");
+        function onSignupFormSubmit(){
+            
+            var userName=userNameEle.value;
+            //用户名以字母开头，6-16个英文字符，数字或下划线
+            var ptt1=new RegExp("^[a-zA-Z]+[a-zA-Z0-9_]{5,15}?$");
+            //如果不匹配
+            if(!ptt1.test(userName)){
+                signupErrorEle.innerText="用户名以字母开头，6-16个英文字符，数字或下划线";
+                return false;
+            }
+            
+            var passWord=passWordEle.value;
+            //口令应为8-20个字符，包含英文字符，数字，下划线或特殊符号
+            var ptt2= new RegExp("^\\S{8,20}$");
+            //如果不匹配
+            if(!ptt2.test(passWord)){
+                signupErrorEle.innerText="口令应为8-20个字符，包含英文字符，数字，下划线或特殊符号";
+                return false;
+            }
+            
+            var passWordAgain=passWordAgainEle.value;
+            if(passWord!=passWordAgain){
+                signupErrorEle.innerText="两次密码应该相同";
+                return false;
+            }
+
+            //上述表单验证都通过
+            signupErrorEle.innerText="";
+            alert("登陆成功");
+            return true;
+
+        }
+    </script>
+</body>
+
+</html>

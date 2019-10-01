@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>mfs</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./iconfont/iconfont.css">
+    <script src="./fuc.js"></script>
+
+</head>
+
+<body>
+    <header class="header">
+        <span class="header cn">一分耕耘 一分收获</span>
+        <span class="header en">NO PAINS NO GAINS</span>
+    </header>
+    <section class="container">
+    </section>
+    <nav class="navcontainer">
+        <!-- <div class="prepage">&lt;</div>
+        <div class="page" page_index="1">1</div>
+        <div class="pageNow" page_index="2">2</div>
+        <div class="page" page_index="3">3</div>
+        <div class="aftpage" >&gt;</div> -->
+    </nav>
+    <script>
+        createData();
+        createNavData();
+        var navData=getNavData();
+
+        function createDom(order,clickTimes,replyTimes,title) {
+            var dom = document.createElement("div");
+            dom.setAttribute("class", "item");
+            var domInnerHtml = '<div class="item-order">'+order+'</div>'+
+            '<div class="smile iconfont icon-Smile"></div>'+
+            '<div class="observe iconfont icon-changyongicon-"></div>'+
+            '<div class="observe value">'+clickTimes+'</div>'+
+            '<div class="reply iconfont icon-liuyan"></div>'+
+            '<div class="reply value">'+replyTimes+'</div>'+
+            '<div class="item-bottom">'+title+'</div>';
+            dom.innerHTML=domInnerHtml;
+            return dom;
+        }
+        var container=document.getElementsByClassName("container")[0];
+       
+        //清除容器中的items
+        function clearDoms(){
+            while(container.hasChildNodes()){
+                container.removeChild(container.lastChild);
+            }
+        }
+        
+        //向容器中添加items
+        function addDoms(page){
+            clearDoms();
+            var domData=getData(page);
+            for (let i =0;i<domData.length;i++){
+                var item=createDom(
+                    domData[i].no,
+                    domData[i].clickTimes,
+                    domData[i].replyTimes,
+                    domData[i].title
+                );
+                container.appendChild(item);
+            }
+        }
+        var navContainer=document.getElementsByClassName("navcontainer")[0];
+        //初始化底部页面导航
+        function setNav(){
+            var prePageEle=document.createElement("div");
+            prePageEle.setAttribute("class","prepage");
+            prePageEle.innerHTML='<div class="prepage">&lt;</div>';
+            prePageEle.addEventListener("click",prePage);
+            navContainer.appendChild(prePageEle);
+
+            // var navData=getNavData();
+            
+            for(let i=0;i<navData.length;i++){
+                var pageEle=document.createElement("div");
+                if(i==0){
+                    pageEle.setAttribute("class","pageNow");
+                }
+                else{
+                    pageEle.setAttribute("class","page");
+                }
+                pageEle.setAttribute("page_index",navData[i]);
+                pageEle.innerHTML=navData[i];
+                pageEle.addEventListener("click",movePageTo);
+                navContainer.appendChild(pageEle);
+            }
+            
+            var aftPageEle=document.createElement("div");
+            aftPageEle.setAttribute("class","aftpage");
+            aftPageEle.innerHTML='<div class="aftpage">&gt;</div>';
+            aftPageEle.addEventListener("click",aftPage);
+            navContainer.appendChild(aftPageEle);
+        }
+        function movePageTo(event){
+            var pageEle=document.getElementsByClassName("pageNow")[0];
+            pageEle.setAttribute("class","page");
+            var pageNow=event.target;
+            pageNow.setAttribute("class","pageNow");
+            var pageIndex=pageNow.getAttribute("page_index");
+            addDoms(pageIndex-1);
+        }
+        function aftPage(){
+            var pageEle=document.getElementsByClassName("pageNow")[0];
+            var pageNow=pageEle.getAttribute("page_index");
+            pageEle.setAttribute("class","page");
+            if(pageNow==navData.length){
+                pageNow--;
+            }
+            var pageEles=document.getElementsByClassName("page");
+            pageEles[pageNow].setAttribute("class","pageNow");
+            addDoms(pageNow);
+            
+        }
+        function prePage(){
+            var pageEle=document.getElementsByClassName("pageNow")[0];
+            var pageNow=pageEle.getAttribute("page_index");
+            pageEle.setAttribute("class","page");
+            if(pageNow==1){
+                pageNow++;
+            }
+            var pageEles=document.getElementsByClassName("page");
+            pageEles[pageNow-2].setAttribute("class","pageNow");
+            addDoms(pageNow-2);
+            
+        }
+        addDoms(0);
+        setNav();
+    </script>
+</body>
+
+</html>

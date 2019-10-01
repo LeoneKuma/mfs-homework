@@ -1,0 +1,159 @@
+*{
+    font-family: "Helvetica Neue", Arial, verdana, sans-serif;
+}
+body{
+    margin: 0;
+}
+header.header{
+    background-image: url("https://work.mafengshe.com/static/imgs/banner.jpg");
+    height: 270px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+span.header.cn{
+    color: white;
+    font-size: 46px;
+    font-weight: 700;
+    margin-top: 40px;
+}
+span.header.en{
+    color:white;
+    font-size: 28px;
+    font-weight: 700;
+    margin-top: 25px;
+}
+
+section.container{
+    display: flex;
+    height: 600px;
+    justify-content: space-around;
+    align-content: flex-start;
+    flex-wrap: wrap;
+}
+div.item{
+    width: 300px;
+    height: 150px;
+    background: #4cd8e0;
+    margin:15px 0px;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+div.item-order{
+    height: 70px;
+    width: 70px;
+    background: #20b6d2;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 70px;
+    font-size: 28px;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.87);
+    position: absolute;
+    top:-15px;
+    left:-15px;
+
+}
+div.item-bottom{
+    height: 45px;
+    width: 100%;
+    text-align: center;
+    line-height: 45px;
+    font-size: 14px;
+    font-weight: 400;
+    background: #00474c;
+    color:#fff;
+    position:absolute;
+    bottom: 0px;
+}
+div.smile{
+    font-size: 60px;
+    color: black;
+    position: absolute;
+    top: 25px;
+    left: 120px;
+}
+div.observe.iconfont{
+    font-size: 24px;
+    font-weight: 550;
+    color:white;
+    position: absolute;
+    top: -2px;
+    right: 70px;
+}
+div.observe.value{
+    font-size: 13px;
+    font-weight: 400;
+    color:white;
+    position: absolute;
+    top: 4px;
+    right: 47px;
+}
+div.reply.iconfont{
+    font-size: 14px;
+    font-weight: 700;
+    color:white;
+    position: absolute;
+    top: 5px;
+    right: 28px;
+}
+div.reply.value{
+    font-size: 13px;
+    font-weight: 400;
+    color:white;
+    position: absolute;
+    top: 4px;
+    right:10px;
+}
+nav.navcontainer{
+    display: flex;
+    margin-bottom: 50px;
+    justify-content: center;
+}
+div.prepage,div.aftpage{
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.7);
+    height: 50px;
+    transform: scaleY(1.6);
+    margin: 0 10px;
+    position: relative;
+    bottom: 12px;
+
+}
+div.page{
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 400;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    line-height: 30px;
+    color: rgba(0, 0, 0, 0.7);
+    position: relative;
+    bottom: 12px;
+    background-color: white;
+    transition: background-color 0.4s;
+    margin: 0px 5px;
+}
+div.pageNow{
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 400;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+    background: #ee6e73;
+    transition: background-color 0.4s;
+    border-radius: 3px;
+    position: relative;
+    bottom: 12px;
+    margin: 0px 5px;
+}
