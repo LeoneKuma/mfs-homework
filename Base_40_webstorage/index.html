@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>document</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./iconfont/iconfont.css">
+    <script src="./data.js"></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="title">Shoppping</div>
+    </header>
+    <section class="container">
+        <div class="itemlist">
+        </div>
+        <div class="shoppingCart">
+            <div class="line"></div>
+            <div class="carticon iconfont icon-iconset0308"></div>
+            <div class="cartblock"></div>
+        </div>
+        
+    </section>
+    <script>
+        //先创建商品数据
+        createItemsData(20);
+        //再更新商品界面
+        updateItemsInterface();
+
+        //初始化购物车本地存储
+        initialLocalStorage();
+
+        //更新购物车界面
+        updateCartInterface();  
+    </script>
+
+</body>
+
+</html>
