@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        input{
+            width: 100px;
+            height: 20px;
+        }
+        span#result{
+            position: relative;
+            top:5px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    X:<input id="point_x" type="text">
+    Y:<input id="point_y" type="text">
+    <button id="btn">确认</button>
+    <span id="result"></span>
+    <script>
+        function isInCircle(x,y){
+            if(Math.sqrt(Math.pow(x,2)+Math.pow(y,2))<=1){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        var btnEle=document.getElementById("btn");
+        btnEle.addEventListener("click",function(){
+            var resultSpanEle=document.getElementById("result");
+            var x=document.getElementById("point_x").value;
+            var y=document.getElementById("point_y").value;
+            if(isInCircle(x,y)){
+                resultSpanEle.innerText="在标准圆内";
+            }else{
+                resultSpanEle.innerText="不在标准圆内";
+            }
+        })
+    </script>
+</body>
+</html>

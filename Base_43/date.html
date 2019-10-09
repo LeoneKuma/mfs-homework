@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">刷新</button>
+    <span id="dateNow"></span>
+    
+    <script>
+        function twodigtal(num){
+            num=num+"";
+            if(num.length<2){
+                num="0"+num;
+            }
+            return num;
+        }
+        function getTime(){
+            var date=new Date();
+            var year=date.getFullYear();
+            var month=date.getMonth()+1;
+            var day=date.getDate();
+            var hours=date.getHours();
+            var minutes=date.getMinutes();
+            var seconds=date.getSeconds();
+            return year+"-"+twodigtal(month)+"-"+twodigtal(day)+" "+twodigtal(hours)+":"+twodigtal(minutes)+":"+twodigtal(seconds);
+        }
+        var dateSpan=document.getElementById("dateNow");
+        var btn=document.getElementById("btn");
+        btn.addEventListener("click",function(){
+            dateSpan.innerText=getTime();
+        });
+        dateSpan.innerText=getTime();
+    </script>
+</body>
+</html>
