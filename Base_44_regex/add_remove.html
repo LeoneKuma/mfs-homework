@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function addClass(str, clazz) {
+            var reg = new RegExp(clazz);
+
+            // 如果已经包含了，返回原来的属性字符串
+            if (reg.test(str)) {
+                return str;
+            }
+            else{
+                return str+" "+clazz;
+            }
+        }
+        function removeClass(str, clazz) {
+            var reg = new RegExp(clazz);
+
+            //如果没有包含clazz，不用删除，直接返回原来的属性字符串。
+            if(!reg.test(str)){
+                return str;
+            }
+            //否则返回删除后的数组
+            else{
+                var clazzArray=str.split(" ");
+                for(index in clazzArray){
+                    if(clazzArray[index]==clazz){
+                        clazzArray.splice(index,1);
+                        break;
+                    }
+                }
+                return clazzArray.join(" ");
+            }
+        }
+        var clazzString="nav container-wrapper";
+        console.log(addClass(clazzString,"fixed"));
+        console.log(removeClass(clazzString,"container-wrapper"));
+
+    </script>
+</body>
+
+</html>
