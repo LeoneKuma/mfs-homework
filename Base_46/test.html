@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Goods(name) {
+            this.name = name;
+        }
+        Goods.prototype.getName = function () {
+            return "商品名字：" + this.name;
+        }
+
+        Goods.prototype.getRMB = function () {
+            return "商品价格：" + this.price + "元";
+        }
+
+        function Book(name, writer, price) {
+            // 调用父类构造函数
+            Goods.call(this, name);
+            this.name = name;
+            this.writer = writer;
+            this.price = price;
+            this.changeName = changeName;
+            function changeName(name) {
+                this.lastname = name;
+            }
+        }
+        function myCreate(prototype,propertiesObj) {
+            var obj = {};
+            obj.__proto__ = prototype;
+            if( typeof propertiesObj==="object"){
+                for(x in propertiesObj){
+                    obj[x]=propertiesObj[x];
+                }
+            }
+            return obj;
+        }
+        // Book.prototype=myCreate(Goods.prototype,{a:1});
+        // Book.prototype = Object.create(Goods.prototype);
+        //Book.prototype=new Goods();
+        Book.prototype.getRMB = function () {
+            return "图书价格：" + this.price + "元";
+        }
+
+
+
+        var book = new Book("book1", "Tom", "59.9");
+        console.log(book.getName())    // 商品名字：book1
+        console.log(book.getRMB())     // 图书价格：59.9元
+        //var good = new Goods("good1");
+        //console.log(good.getName());
+    </script>
+</body>
+
+</html>
