@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //工厂类
+        function Factory(name){
+            this.name=name;
+        }
+        Factory.prototype={
+            produce:function(){
+                throw new Error("请通过子类工厂创建");
+            },
+            getFactoryName:function(){
+                return this.name;
+            }
+        }
+
+        //海尔电视工厂
+        function HaierTvFactory(name){
+            Factory.call(this);
+            this.name=name;
+        }
+        //继承工厂类
+        HaierTvFactory.prototype=Object.create(Factory.prototype);
+        //重写工厂方法
+        HaierTvFactory.prototype.produce=function(){
+            return {
+                brand:"Haier",
+                type:"tv"
+            }
+        }
+
+        //海信电视工厂
+        function HisenseTvFactory(name){
+            Factory.call(this);
+            this.name=name;
+        }
+        //继承工厂类
+        HisenseTvFactory.prototype=Object.create(Factory.prototype);
+        //重写工厂方法
+        HisenseTvFactory.prototype.produce=function(){
+            return {
+                brand:"Hisense",
+                type:"tv"
+            }
+        }
+
+        var factory=new HisenseTvFactory("hisense");
+        var tv=factory.produce();
+        console.log(tv);
+        factory=new HaierTvFactory("haier");
+        var tv=factory.produce();
+        console.log(tv);
+        
+
+    </script>
+</body>
+</html>

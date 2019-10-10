@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function instanceoOf(obj,clazz){
+            if(obj.__proto__==clazz.prototype){
+                return true;
+            }
+            var __proto__ = obj.__proto__;
+            while(__proto__){
+                if(__proto__==clazz.prototype){
+                    return true;
+                }
+                __proto__=__proto__.__proto__;
+            }
+            return false;
+        }
+        function A(){}
+        function B(){}
+        function C(){}
+        C.prototype=new B();
+        var a=new A();
+        var b=new B();
+        var c=new C();
+        console.log("a instanceof B："+instanceoOf(a,B));//false
+        console.log("c instanceof B："+instanceoOf(c,B));//true
+        console.log("a instanceof Object："+instanceoOf(a,Object));//true
+
+
+    </script>
+</body>
+</html>

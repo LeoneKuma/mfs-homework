@@ -17,7 +17,7 @@
             return "商品名字：" + this.name;
         }
 
-        Goods.prototype.getRMB = function () {
+        Goods.prototype.getRMB1 = function () {
             return "商品价格：" + this.price + "元";
         }
 
@@ -35,6 +35,7 @@
         function myCreate(prototype,propertiesObj) {
             var obj = {};
             obj.__proto__ = prototype;
+            
             if( typeof propertiesObj==="object"){
                 for(x in propertiesObj){
                     obj[x]=propertiesObj[x];
@@ -42,18 +43,28 @@
             }
             return obj;
         }
-        // Book.prototype=myCreate(Goods.prototype,{a:1});
+        function myCreate2(prototype) {
+            var obj = {};
+            obj= prototype;
+            return obj;
+        }
+         //Book.prototype=myCreate(Goods.prototype,{a:1});
+         //Book.prototype=myCreate2(Goods.prototype)
         // Book.prototype = Object.create(Goods.prototype);
+        var good = new Goods("good1");
+        Book.prototype=good;
+        good.name="noname";
         //Book.prototype=new Goods();
-        Book.prototype.getRMB = function () {
+        Book.prototype.getRMB2 = function () {
             return "图书价格：" + this.price + "元";
         }
 
 
 
         var book = new Book("book1", "Tom", "59.9");
+        //var book = new Book("book1", "Tom", "59.9");
         console.log(book.getName())    // 商品名字：book1
-        console.log(book.getRMB())     // 图书价格：59.9元
+        console.log(book.getRMB2())     // 图书价格：59.9元
         //var good = new Goods("good1");
         //console.log(good.getName());
     </script>
