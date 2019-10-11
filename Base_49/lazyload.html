@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <style>
+        div.block{
+            height: 1000px;
+        }
+        img.img{
+            height: 300px;
+            width: 300px;
+            background: grey;
+        }
+    </style>
+</head>
+<body>
+    <div class="block"></div>
+    <img class="img" src="" data-src="http://a.hiphotos.baidu.com/image/pic/item/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg">
+    <div class="block"></div>
+    <script>
+        function isShow($node){
+            //浏览器窗口高度
+            var windowH=window.innerHeight;
+            //浏览器窗口距离文档顶部位置的高度
+            var scrollT=$(window).scrollTop();
+            //元素高度
+            var nodeH=$node.height();
+            //元素距离文档顶部位置的高度
+            var nodeT=$node.offset().top;
+
+            return nodeT+nodeH>=scrollT&&scrollT+windowH>=nodeT;
+
+        }
+        var timer;
+        window.onscroll=function(){
+            clearTimeout(timer);
+            timer=setTimeout(function(){
+                if(isShow($("img.img"))){
+
+                    $("img.img").attr("src",$("img.img").data("src"));
+                }
+                else{
+                    $("img.img").attr("src","");
+                }
+            },100)
+        }
+    </script>
+</body>
+</html>

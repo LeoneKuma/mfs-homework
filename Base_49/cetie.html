@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .top {
+            height: 50px;
+        }
+
+        .nav {
+            width: 1000px;
+            height: 50px;
+            background: yellowgreen;
+            margin: 0 auto;
+        }
+
+        .content {
+            width: 1000px;
+            height: 3000px;
+            background: grey;
+            margin: 0 auto;
+        }
+
+        .nav-fixed {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top"></div>
+    <div class="nav"></div>
+    <div class="content"></div>
+
+</body>
+<script>
+    window.onscroll = function () {
+        if (window.scrollY > 50) {
+            $("div.nav").addClass("nav-fixed");
+        }
+        else {
+            $("div.nav").removeClass("nav-fixed");
+        }
+    }
+</script>
+
+</html>
