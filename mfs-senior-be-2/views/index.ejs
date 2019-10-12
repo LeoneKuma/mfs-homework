@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+</head>
+<body>
+    用户名: <input id="username"type="text">
+    <button id="btn">注册</button>
+    <span id="msg"></span>
+    <script>
+        $("#btn").on("click",function(){
+            $.post({
+            method:"post",
+            url:"http://www.a.com:3000/signup",
+            data:({username:$("#username").val(),}),
+            success:function(data){
+                var dataStr=JSON.stringify(data);
+                $("#msg").text(dataStr);               
+            }
+        })
+        })
+       
+    </script>
+</body>
+</html>
