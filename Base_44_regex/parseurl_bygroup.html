@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function parseURL(str){
+            var host=str.match(/\w*(\.\w*)+(:\d*)?/)[0];
+            var protocol=str.match(new RegExp(".*(?="+host+")"))[0];
+            var port=host.match(new RegExp("(?<=:).*"))[0];
+            var hostname=host.match(new RegExp(".*(?=:)"))[0];
+            var pathname=str.match(new RegExp("(?<="+host+").*(?=\\?)"))[0];
+            var query=str.match(new RegExp("(?<="+pathname+"\\?).*(?=#)"))[0];
+            var hash=str.match(new RegExp("(?<="+query+").*"))[0];
+            
+
+            return {
+                protocol:protocol,
+                host:host,
+                port:port,
+                hostname:hostname,
+                pathname:pathname,
+                hash:hash,
+                query:query
+            }
+        }
+        function parseUrlByGroup(str){
+            var reg=/(\w+)?:\/\/([a-zA-Z0-9.]+):(\d*)([a-zA-Z/]+)?\?([\w=]+)?(#\w+)/;
+            var result=str.match(reg);
+            var protocol=result[1];
+            var hostname=result[2];
+            var port=result[3];
+            var host=hostname+":"+port;
+            var pathname=result[4];
+            var query=result[5];
+            var hash=result[6];
+
+            
+            return {
+                protocol:protocol,
+                host:host,
+                port:port,
+                hostname:hostname,
+                pathname:pathname,
+                hash:hash,
+                query:query
+            }
+            
+        }
+        console.log(parseUrlByGroup("http://work.mafengshe.com:80/question/details?id=24#somehash"));
+    </script>
+</body>
+</html>
