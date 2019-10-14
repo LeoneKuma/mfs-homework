@@ -36,9 +36,11 @@
             var obj = {};
             obj.__proto__ = prototype;
             
-            if( typeof propertiesObj==="object"){
+            if( typeof propertiesObj=="object"){
                 for(x in propertiesObj){
-                    obj[x]=propertiesObj[x];
+                    if(propertiesObj.hasOwnProperty(x)){
+                        obj[x]=propertiesObj[x]["value"]
+                    }
                 }
             }
             return obj;
@@ -67,6 +69,17 @@
         console.log(book.getRMB2())     // 图书价格：59.9元
         //var good = new Goods("good1");
         //console.log(good.getName());
+        // function person(name){
+        //     this.name=name;
+        //     console.log(this);
+        // }
+        // function stuff(name,job){
+        //     person.call(this,name);
+        //     this.job=job;
+        //     console.log(this);
+        // }
+        // stuff.prototype=Object.create(person.prototype);
+        // var coder=new stuff("coder");
     </script>
 </body>
 
