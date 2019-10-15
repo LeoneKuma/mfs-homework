@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <style>
+        input#submit,
+        input#reset {
+            width: 100px;
+            font-size: 20px;
+            line-height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="/" method="post" enctype="multipart/form-data">
+        <div>
+            <label>用户名:</label>
+            <input name="username" id="username" type="text" required>
+            <span id="msg-username"></span>
+        </div>
+        <div>
+            <label>密码:</label>
+            <input name="password" id="password" type="password" required>
+            <span id="msg-password"></span>
+        </div>
+        <div>
+            <label>确认密码:</label>
+            <input name="password-repeat" id="password-repeat" type="password" required>
+            <span id="msg-password-repeat"></span>
+        </div>
+        <input id="submit" type="submit" value="注册" />
+        <input id="reset" type="reset">
+    </form>
+    <script>
+        function passwordCheck() {
+            if (!$("#password").val().match(/^\S{6,18}$/)) {
+                $("#msg-password").text("密码格式错误，应以字母开头，6-18个字符");
+
+                $("#password")[0].setCustomValidity("密码格式错误");
+                console.log("regex not pass");
+                return;
+            }
+            else {
+                $("#msg-password").text("密码可用");
+                $("#password")[0].setCustomValidity("");
+            }
+        }
+        function passwordRepeatCheck() {
+            if (!$("#password-repeat").val().match(/^\S{6,18}$/)) {
+                $("#msg-password-repeat").text("密码格式错误，应以字母开头，6-18个字符");
+                $("#password-repeat")[0].setCustomValidity("密码格式错误");
+                console.log("regex not pass");
+                return;
+            }
+           
+            if ($("#password-repeat").val() != $("#password").val()) {
+                console.log("密码不一致");
+                $("#msg-password-repeat").text("两次密码输入不同");
+                $("#password-repeat")[0].setCustomValidity("两次密码输入不同");
+            }
+            else {
+                console.log("密码一致");
+                $("#msg-password-repeat").text("两次密码一致");
+                $("#password-repeat")[0].setCustomValidity("");
+            }
+        }
+        var timerUsername;
+        $("#username").on("input", function () {
+            clearTimeout(timerUsername);
+
+            timerUsername = setTimeout(function () {
+                if (!$("#username").val().match(/^[a-zA-Z]\w{5,17}$/)) {
+                    $("#msg-username").text("用户名格式错误，应以字母开头，6-18个字符");
+
+                    $("#username")[0].setCustomValidity("用户名格式错误");
+                    console.log("regex not pass");
+                    return;
+
+                }
+                $.ajax({
+                    url: "http://127.0.0.1:3000/signup/username-check",
+                    method: "post",
+                    data: { username: $("#username").val() },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.result == 0) {
+                            $("#msg-username").text("用户名可用");
+                            $("#username")[0].setCustomValidity("");
+                        }
+                        else {
+                            $("#msg-username").text("用户名已占用");
+                            $("#username")[0].setCustomValidity("用户名不可用");
+                        }
+                    }
+                })
+            }, 1000);
+        })
+
+        var timerPassword;
+        $("#password").on("input", function () {
+            clearTimeout(timerPassword);
+
+            timerPassword = setTimeout(function () {
+                passwordCheck();
+                if($("#password-repeat").val()){
+                    console.log("passwordRepeatCheck")
+                    passwordRepeatCheck();
+                }
+            }, 1000);
+        })
+
+        var timerPasswordRepeat;
+        $("#password-repeat").on("input", function () {
+            clearTimeout(timerPasswordRepeat);
+            timerPasswordRepeat = setTimeout(function () {
+                passwordRepeatCheck();
+            }, 1000)
+
+        });
+
+    </script>
+</body>
+
+</html>
