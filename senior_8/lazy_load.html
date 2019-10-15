@@ -13,7 +13,7 @@
         img.img{
             height: 300px;
             width: 300px;
-            background: grey;
+            padding-right: 1000px;
         }
         div.something{
             height: 300px;
@@ -26,6 +26,13 @@
     <div class="block"></div>
     <div class="something"></div>
     <img class="img" src="" data-src="http://a.hiphotos.baidu.com/image/pic/item/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg">
+    <img class="img" src="" data-src="http://a.hiphotos.baidu.com/image/pic/item/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg">
+    <img class="img" src="" data-src="http://a.hiphotos.baidu.com/image/pic/item/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg">
+    <img class="img" src="" data-src="http://a.hiphotos.baidu.com/image/pic/item/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg">
+    <img class="img" src="" data-src="http://a.hiphotos.baidu.com/image/pic/item/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg">
+    <img class="img" src="" data-src="http://a.hiphotos.baidu.com/image/pic/item/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg">
+    <img class="img" src="" data-src="http://a.hiphotos.baidu.com/image/pic/item/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg">
+
     <div class="something"></div>
     <div class="block"></div>
     <script>
@@ -42,16 +49,22 @@
             return nodeT+nodeH>=scrollT&&scrollT+windowH>=nodeT;
 
         }
-        var timer;
-        window.onscroll=function(){
-            clearTimeout(timer);
-            timer=setTimeout(function(){
-                if(isShow($("img.img"))){
-
-                    $("img.img").attr("src",$("img.img").data("src"));
-                }
-            },100)
+        function LazyImg($nodes){
+            var timer;
+            window.onscroll=function(){
+                clearTimeout(timer);
+                timer=setTimeout(function(){
+                    $nodes.each(function(){
+                        if(isShow($(this))){
+                            $(this).attr("src",$(this).data("src"));
+                        }
+                    })
+                },100)
+            }
         }
+        LazyImg($(".img"));
+        var a=1;
     </script>
+
 </body>
 </html>
