@@ -44,14 +44,14 @@ router.post('/username-check',function(req,res,next){
         res.json({"result":0})
     }
 })
-// router.post('/signup',function(req,res,next){
-//     res.header({ "Access-Control-Allow-Origin": "*" });
-//     console.log("signup");
-//     console.log(req.data);
-//     users.push({
-//         username:req.body.username,
-//         password:req.body.password
-//     })
-//     res.json({result:"success"});
-// })
+router.post('/register',function(req,res,next){
+    res.header({ "Access-Control-Allow-Origin": "*" });
+    console.log("register");
+    console.log(req.body);
+    users.push({
+        username:req.body.username,
+        password:req.body.password
+    })
+    res.json({result:"success"});
+})
 module.exports = router;
