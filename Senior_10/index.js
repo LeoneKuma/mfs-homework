@@ -1,34 +1,32 @@
+function ajaxGet(url) {
+   return new Promise(
+      function (resolve, reject) {
+         var xhr = new XMLHttpRequest();
+         xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+               //   callback(JSON.parse(xhr.responseText));
+               resolve(xhr.response);
+            }
+            else {
+               reject("Get failed");
+            }
+         }
+         xhr.open("get", url, true);
+         xhr.send(null);
 
-// var p1=new Promise(function(resolve,reject){
-//    reject("p1");
+      }
+   )
+}
+var url = "http://127.0.0.1:5500/mfs-homework/Senior_13/region.js";
+// var url="https://3g.163.com/touch/reconstruct/article/list/BA8D4A3Rwangning/0-20.html";
+// ajaxGet(url).then(function(data){
+//    console.log(data);
+// }).catch(function(err){
+//    console.log(err)
 // });
-// var p2=new Promise(function(resolve,reject){
-//    reject("p2");
-// });
-// var p3=new Promise(function(resolve,reject){
-//    resolve("p3");
-// });
 
-// Promise.all(new Set([1,2,3])).then(
-//    function(data){
-//       console.log("then:"+data);
-//    }
-// ).catch(
-//    function(data){
-//       console.log("catch:"+data);
-//    }
-// )
-
-var p = new Promise(function (resolve, reject) {
-    resolve("resolve done")
-});
-
-var obj=p.then(function (data) {
-   console.log("1"+data);
-});
-var obj2=p.then(function (data) {
-   console.log("2:"+data);
-});
-
-console.log(obj ==p);//false
-console.log(obj==obj2)//false
+for(var i=0;i<10;i++){
+   ajaxGet(url).then(function(){
+      console.log(url);
+   })
+}

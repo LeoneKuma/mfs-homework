@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <style>
+        div.container {
+            position: relative;
+        }
+
+        div.item {
+            margin: 6px 10px;
+            cursor: pointer;
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            font-size: 20px;
+            font-weight: 400;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            transition: all 1s;
+            position: absolute;
+        }
+
+        div.item img {
+            width: 200px;
+            height: 100px;
+
+        }
+
+        div.item .digest {
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.6);
+            font-weight: 300;
+        }
+
+        div.item .digest::after {
+            content: "..."
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- <div class="item" data-url="http://3g.163.com/tech/19/1015/07/ERGV0IVQ00097U7S.html">
+            <img src="http://cms-bucket.ws.126.net/2019/10/15/45e988c2a5b54f099fdd095fefececc1.png" alt="">
+            <div class="title">iPhone 11热卖两大原因：便宜+老设备升级</div>
+            <div class="digest">网易科技讯10月15日消息，据bloomberg报道，苹果公</div>
+        </div> -->
+    </div>
+    <script>
+        //一次加载多少新闻条目
+        var requestSize = 20;
+        //请求的次数
+        var requestTime = 0;
+        function createNewsItem(newsObj) {
+            var item = document.createElement("div");
+            item.setAttribute("class", "item");
+            item.setAttribute("data-url", newsObj.url);
+            var html = '<img src="' + newsObj.imgsrc + '">' +
+                '<div class="title">' + newsObj.title + '</div>' +
+                '<div class="digest">' + newsObj.digest + '</div>';
+            item.innerHTML = html;
+            item.addEventListener("click", function () {
+                window.open($(this).data("url"), "_blank");
+            })
+            return item;
+        }
+        function appandNews(dataArry) {
+            for (var i = 0; i < dataArry.length; i++) {
+                var item = createNewsItem(dataArry[i]);
+                $(".container").append(item);
+            }
+        }
+
+        function getNews() {
+            return new Promise(
+                function (resolve, reject) {
+                    var requestUrl = "https://3g.163.com/touch/reconstruct/article/list/BA8D4A3Rwangning/" + requestTime * requestSize + "-" + requestSize + ".html";
+                    $.ajax(
+                        {
+                            url: requestUrl,
+                            type: "get",
+                            dataType: "jsonp",
+                            jsonpCallback: "artiList",
+                            success: function (result) {
+                                resolve(result.BA8D4A3Rwangning);
+                            }
+                        });
+                }
+            )
+        }
+        function attachNews(newsData){
+            appandNews(newsData);
+            requestTime++;
+            waterFallLoad();
+        };
+
+    </script>
+    <script>
+        function findMinIndex(arr) {
+            var minIndex = 0;
+            for (x in arr) {
+                if (arr[minIndex] > arr[x]) {
+                    minIndex = x;
+                }
+            }
+            return minIndex;
+        }
+
+        function waterFallLoad() {
+            var itemWidth = $(".item").outerWidth(true);
+            var windowWidth = window.innerWidth;
+            var containerWidth = $(".container").width();
+            var colNum = Math.floor(containerWidth / itemWidth);
+            var heights = [];
+            for (var i = 0; i < colNum; i++) {
+                heights.push(0);
+            }
+
+            $(".item").each(function () {
+                var col = findMinIndex(heights);
+                var ele = $(this);
+                var marginLeft = (windowWidth - colNum * itemWidth) / 2;
+                ele.css({
+                    top: heights[col] + "px",
+                    left: col * itemWidth + marginLeft + "px"
+                });
+                heights[col] += ele.outerHeight(true);
+            })
+        }
+        getNews().then(attachNews);
+        $(window).on("resize", function () {
+            waterFallLoad();
+        })
+
+        //滚动到接近底部时，请求数据
+        var timer;
+        $(window).on("scroll", function () {
+            clearTimeout(timer);
+            timer = setTimeout(function () {
+                var bodyHeight = document.body.scrollHeight;
+                var windowH = $(window).height();
+                var windowTop = $(window).scrollTop();
+                if (bodyHeight - windowH - windowTop <= 400) {
+                    getNews().then(attachNews);
+                }
+
+            }, 100)
+        })
+    </script>
+</body>
+
+</html>
