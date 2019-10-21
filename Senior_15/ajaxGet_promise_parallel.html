@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function ajaxGet(url) {
+            return new Promise(
+                function (resolve, reject) {
+                    var xhr = new XMLHttpRequest();
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+                            //   callback(JSON.parse(xhr.responseText));
+                            resolve(xhr.response);
+                        }
+                    }
+                    xhr.open("get", url, true);
+                    xhr.send(null);
+
+                }
+            )
+        }
+        var requestTime = 1;
+        function getNextUrl() {
+            var pageSize = 30;
+            var url = "https://learning-api.mafengshe.com/news?pageSize=" + pageSize + "&page=" + requestTime++;
+            console.log(url);
+            return url;
+        }
+ 
+        //实现并行
+        function* genTen() {
+            for (let i = 0; i < 10; i++) {
+                let p = ajaxGet(getNextUrl());
+                yield p;
+            }
+        }
+
+        function run(genTen) {
+            var it=genTen();
+            var promiseArry=[];
+            var rs=it.next();
+            while(!rs.done){
+                promiseArry.push(rs.value);
+                rs=it.next();
+            }
+            Promise.all(promiseArry).then(data=>{
+                console.log(data);
+            })
+        }
+        run(genTen);
+
+    </script>
+</body>
+
+</html>

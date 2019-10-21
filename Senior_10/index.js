@@ -25,8 +25,39 @@ var url = "http://127.0.0.1:5500/mfs-homework/Senior_13/region.js";
 //    console.log(err)
 // });
 
-for(var i=0;i<10;i++){
-   ajaxGet(url).then(function(){
+for (var i = 0; i < 10; i++) {
+   ajaxGet(url).then(function () {
       console.log(url);
    })
 }
+
+
+function a() {
+   console.log("1");
+   function b() {
+      console.log("2");
+      return;
+   }
+   b();
+   console.log("3");
+}
+function foo(a, b, c, d) { }
+function bar(foo) {
+   return 
+
+};
+
+function fn(){
+   console.log(arguments.length);
+   console.log(arguments[0]);
+   console.log(arguments[1]);
+   console.log(arguments[2]);
+   console.log(arguments[3]);
+
+}
+
+fn(1,2,3,4)
+
+
+
+ 

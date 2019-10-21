@@ -1,0 +1,33 @@
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+<script>
+    //promise实现ajax请求
+    var ajaxGetPromise = url => {
+        return new Promise(function (resolve, reject) {
+            $.ajax({
+                url: url,
+                dataType: "json"
+            }).done(
+                (data) => {
+                    resolve(data);
+                }
+            ).fail(
+                (xhr, status, err) => {
+                    reject(err);
+                }
+            )
+        })
+    }
+    //aysnc函数
+    async function asyncGenTen() {
+        var [page, pageSize] = [1, 30]
+        for (; page <= 10; page++) {
+            let p = ajaxGetPromise(`https://learning-api.mafengshe.com/news?pageSize=${pageSize}&page=${page}`);
+            console.log((await p).result);
+        }
+    }
+    genTen().then(data=>{
+        console.log("done");
+    }).catch(err=>{
+        console.log(err);
+    })
+</script>

@@ -1,0 +1,47 @@
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+<script>
+    //AJAX异步请求方法
+    function ajaxCallback(url, callback) {
+        $.ajax({
+            url: url,
+            dataType: "json"
+        }).done(
+            data => {
+                callback(null, data);
+            }
+        ).fail(
+            (xhr, status, err) => {
+                callback(err);
+            }
+        )
+    }
+
+//Thunk函数
+
+let ajaxGetThunk=url=>callback=>ajaxCallback(url,callback);
+
+//generator函数
+
+function* genTen(){
+    var [page,pageSize]=[1,30];
+    for(;page<=10;page++){
+        let cb=ajaxGetThunk(`https://learning-api.mafengshe.com/news?pageSize=${pageSize}&page=${page}`);
+        console.log(yield cb);
+    }
+}
+//run方法实现异步控制流。
+
+function run(gen){
+    var it=gen();
+    function next(data){
+        let rs=it.next(data);
+        if(rs.done)return;
+        //下面传入的callback启动了ajax异步请求，完成时自动被调用，再启动下一个ajax异步请求。
+        rs.value(function(err,data){
+            next(data);
+        });
+    }
+    next();
+}
+run(genTen);
+</script>
