@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue Start</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <item v-for="i in list" :data="i"></item>
+        </ul>
+        <button @click="addComponent()">增加组件</button>
+        <button @click="removeComponent()">删除组件</button>
+    </div>
+    <script>
+        Vue.component('item', {
+            props: ['data'],
+            template: "<li>{{data}}</li>",
+            created() {
+                console.log("created")
+            },
+            destroyed() {
+                console.log("destoryed")
+            },
+        });
+        var app = new Vue({
+            el: "#app",
+            data: {
+                message: "hello vue",
+                list: [
+                    "a",
+                    "b",
+                    "c"
+                ],
+            },
+            methods: {
+                addComponent() {
+                    this.list.push("data");
+                },
+                removeComponent() {
+                    this.list.pop();
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
