@@ -1,11 +1,23 @@
-<form action="/">
-    <div class="select">
-            <label>城市:</label>
-          <select name="car">
-            <option value="sabor" selected>北京</option>
-            <option value="sabor" >天津</option>
-            <option value="sabor" >上海</option>
-            <option value="sabor" >重庆</option>
-          </select>
-        </div>
-    </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <a v-bind:href="url">链接</a>
+  </div>
+  <script>
+    var app=new Vue({
+        el:"#app",
+        data:{
+            url:"http://www.baidu.com"
+        }
+    })
+  </script>
+</body>
+</html>

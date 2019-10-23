@@ -12,10 +12,11 @@
 <body>
     <div id="app">
         <ul>
+            <div v-if="seen">列表</div>
             <item v-for="i in list" :data="i"></item>
         </ul>
         <button @click="addComponent()">增加组件</button>
-        <button @click="removeComponent()">删除组件</button>
+        <button v-on:click="removeComponent()">删除组件</button>
     </div>
     <script>
         Vue.component('item', {
@@ -31,6 +32,7 @@
         var app = new Vue({
             el: "#app",
             data: {
+                seen:false,
                 message: "hello vue",
                 list: [
                     "a",
