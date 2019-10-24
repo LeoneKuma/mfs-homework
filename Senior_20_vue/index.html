@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <parent></parent>
+    </div>
+    <script>
+        Vue.component("parent",{
+            data(){
+                return {
+                    rs:1
+                }
+            },
+            methods: {
+                multiNum(num){
+                    this.rs*=num
+                    console.log(num);
+                }
+            },
+            template:`
+                <div class="parent">
+                    <p>result in parent:{{rs}}</p>
+                    <child :rs="rs" @multi="multiNum"></child>
+                </div>
+            `
+        });
+        Vue.component("child",{
+            props:["rs"],
+            data(){
+                return {
+                    num:2
+                }
+            },
+            methods:{
+                btnClick(e){
+                    this.$emit("multi",this.num);
+                }
+            },
+            template:`
+                <div class="child">
+                    <p>result in child{{rs}}</p>
+                    <button @click="btnClick">click</button>
+                </div>
+            `
+        });
+        var vm=new Vue({
+            el:"#app"
+        })
+    </script>
+</body>
+</html>

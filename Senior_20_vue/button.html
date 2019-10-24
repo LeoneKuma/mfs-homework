@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <container></container>
+        
+    </div>   
+    <script>
+        Vue.component("container",{
+            data() {
+                return {
+                    result:0
+                }
+            },
+            methods: {
+                counter(){
+                    this.result++;
+                }
+            },
+            template:`
+                <div>
+                    <p>{{result}}</p>
+                    <counter-button @counter=counter></counter-button>
+                    <counter-button @counter=counter></counter-button>
+                </div>
+            `
+        })
+        Vue.component("counter-button",{
+            data() {
+                return {
+                    counter:0
+                }
+            },
+            methods: {
+                btnClick(){
+                    this.counter++;
+                    this.$emit("counter");
+                }
+            },
+            template:`
+                <span>
+                    <button @click="btnClick">{{counter}}</button>
+                </span>
+            `
+        })
+        var vm=new Vue({
+            el:"#app"
+        });
+    </script> 
+</body>
+</html>

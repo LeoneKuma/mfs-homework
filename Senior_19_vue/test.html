@@ -21,6 +21,7 @@
     <div id="app">
         <div :class="clazz">Hello</div>
         <div :class="itemClass" :style="itemStyle">Vue</div>
+        <button @click="btnClick()">click</button>
     </div>
     <script>
         var app = new Vue({
@@ -37,7 +38,12 @@
                 itemStyle:{
                     fontSize:"40px"
                 }
-            }
+            },
+            methods: {
+                btnClick(e){
+                    console.log(e);
+                }
+            },
         })
     </script>
 
