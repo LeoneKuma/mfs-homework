@@ -67,6 +67,7 @@
             <button @click="visibility='all'">All</button>
             <button @click="visibility='active'">Active</button>
             <button @click="visibility='completed'">Completed</button>
+            <button @click="clearTodos" v-if="completedItemsNum">ClearTodos</button>
 
 
         </ul>
@@ -91,6 +92,9 @@
             computed: {
                 leftItemsNum(){
                     return this.todos.filter(i=>!i.state).length;
+                },
+                completedItemsNum(){
+                    return this.todos.filter(i=>i.state).length;
                 },
                 filteredTodos(){
                     if(this.visibility=="all"){
@@ -122,6 +126,9 @@
                         return;
                     }
                     this.todos.map(i=>{i.state=true});
+                },
+                clearTodos(){
+                    this.todos=this.todos.filter(i=>!i.state);
                 }
             },
         });
