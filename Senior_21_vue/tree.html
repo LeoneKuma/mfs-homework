@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        p.internal-node{
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <tree-node :node-data="treeData">
+        </tree-node>
+    </div>
+    <script>
+        Vue.component("tree-node", {
+            props: ["nodeData"],
+            data() {
+                return{
+                    isFolded:true,
+                    hasChild:!!this.nodeData.children
+                }
+            },
+            computed: {
+                clazz(){
+                    if(this.hasChild){
+                        return "internal-node"
+                    }
+                    else{
+                        return ""
+                    }
+                }
+            },
+
+            methods: {
+                fold(){
+                    this.isFolded=!this.isFolded;
+                },
+            },
+            template: `
+                <div>
+                    <p :class="clazz">{{nodeData.name}}
+                        <span @click="fold()" v-if="hasChild" v-html="isFolded?'[+]':'[-]'"></span>
+                    </p>
+                    <ul v-if="hasChild&&!isFolded">
+                        <li v-for="(item,index) in nodeData.children">
+                            <tree-node :nodeData="item"></tree-node>
+                        </li>
+                    </ul>
+                </div>
+            `
+        });
+        var vm = new Vue({
+            el: "#root",
+            data: {
+                treeData: {
+                    name: 'My Tree',
+                    children: [
+                        { name: 'hello' },
+                        { name: 'wat' },
+                        {
+                            name: 'child folder',
+                            children: [
+                                {
+                                    name: 'child folder',
+                                    children: [
+                                        { name: 'hello' },
+                                        { name: 'wat' }
+                                    ]
+                                },
+                                { name: 'hello' },
+                                { name: 'wat' },
+                                {
+                                    name: 'child folder',
+                                    children: [
+                                        { name: 'hello' },
+                                        { name: 'wat' }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

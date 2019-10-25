@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TodoMVC</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        span.do-all {
+            cursor: pointer;
+            display: inline-block;
+            font-size: 20px;
+            transform: rotate(180deg) scaleX(1.3);
+            line-height: 20px;
+            margin: 0 10px;
+        }
+
+        li.item {
+            margin: 10px 20px;
+            position: relative;
+        }
+
+        li.item.completed {
+            text-decoration: line-through grey;
+            color: grey;
+        }
+
+        li.item input {
+            margin-right: 10px;
+        }
+
+        li.item span {
+            cursor: pointer;
+            display: none;
+            position: absolute;
+            left: 10%;
+        }
+
+        li.item:hover span {
+            display: inline;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li>
+                <span class="do-all" @click="doneAll">^</span>
+                <input type="text" @keydown.enter="addNewTodo" v-model="todo">
+            </li>
+            <li class="item" :class="item.state?'completed':''" v-for="(item,index) in filteredTodos">
+                <input type="checkbox" v-model=item.state>{{item.name}}
+                <span @click="deleteTodo(index)">x</span>
+            </li>
+            {{leftItemsNum}} items left
+            <button @click="visibility='all'">All</button>
+            <button @click="visibility='active'">Active</button>
+            <button @click="visibility='completed'">Completed</button>
+            <button @click="clearTodos" v-if="completedItemsNum">ClearTodos</button>
+
+
+        </ul>
+
+
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data() {
+                return {
+                    todo: "",
+                    todos: [
+                        { name: "吃饭", state: true },
+                        { name: "晚自习", state: false },
+                        { name: "跑步", state: false }
+                    ],
+                    visibility:"all"
+                }
+            },
+            computed: {
+                leftItemsNum(){
+                    return this.todos.filter(i=>!i.state).length;
+                },
+                completedItemsNum(){
+                    return this.todos.filter(i=>i.state).length;
+                },
+                filteredTodos(){
+                    if(this.visibility=="all"){
+                        return this.todos;
+                    }
+                    else if(this.visibility=="active"){
+                        return this.todos.filter(i=>!i.state);
+                    }
+                    else if(this.visibility=="completed"){
+                        return this.todos.filter(i=>i.state);
+                    }
+                    return [];
+                }
+            },
+            methods: {
+                addNewTodo() {
+                    if (!this.todo) return;
+                    this.todos.push({ name: this.todo, state: false })
+                    this.todo = "";
+
+                },
+                deleteTodo(index){
+                    this.todos.splice(index,1);
+                },
+                doneAll(){
+                    //如果全部完成了，再点击一次则变成全部没完成
+                    if(this.todos.length==this.todos.filter(i=>i.state).length){
+                        this.todos.map(i=>{i.state=false});
+                        return;
+                    }
+                    this.todos.map(i=>{i.state=true});
+                },
+                clearTodos(){
+                    this.todos=this.todos.filter(i=>!i.state);
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

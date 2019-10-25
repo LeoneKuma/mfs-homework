@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <form name="form" id="form" action="" method="post" v-on:submit.prevent="onSubmit">
+        username:<input name="username" type="text">
+        password:<input name="password" type="password">
+        <input type="submit">
+        <input type="reset">
+    </form>
+
+    <script>
+        var vm = new Vue({
+            el: "#form",
+            methods: {
+                onSubmit() {
+                    var username = $("[name=username]").value;
+                    var password = $("[name=password]").value;
+                    var dataObj = {
+                        username: username,
+                        password: password
+                    }
+
+                    $.ajax({
+                        url: "/login",
+                        type: "post",
+                        data: JSON.stringify(dataObj)
+                    }).done(data => {
+                        console.log(data)
+                    }).fail((xhr, status, err) => {
+                        console.log(xhr, status, err)
+                    })
+                }
+            },
+        })
+    </script>
+
+</body>
+
+</html>
