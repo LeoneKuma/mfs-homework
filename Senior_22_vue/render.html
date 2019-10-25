@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <message :message="myMessage"></message>
+    </div>
+    <script type="text/x-template" id="message-template">
+        <div>
+            <h1>I'm a template!</h1>
+            <p v-if="message">
+                {{ message }}
+            </p>
+            <p v-else>
+                No message.
+            </p>
+        </div>
+    </script>
+    <script>
+        Vue.component("message",{
+            props:["message"],
+            template:"#message-template",
+            render(createElement) {
+                var obj=[];
+                obj.push( createElement("h1","I'm a template!"));
+                if(this.message){
+                    obj.push(createElement("p",this.message));
+                }else{
+                    obj.push(createElement("p","No message."));
+                }
+                return createElement("div",obj)
+            },
+        })
+        var vm=new Vue({
+            el:"#app",
+            data() {
+                return {
+                    myMessage:""
+                }
+            },
+
+        })
+
+    </script>
+</body>
+
+</html>
