@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div v-for="item in list">
+            <item :item="item"></item>
+        </div>
+        <button @click="addItem">click</button>
+    </div>
+    <script type="text/x-template" id="item-template">
+        <span>{{item}}</span>
+    </script>
+    <script>
+        Vue.component("item",{
+            template:"#item-template",
+            props:["item"]
+
+        })
+
+        //定义混入对象
+        var myMixin={
+            created() {
+                console.log("created");
+            },
+        }
+        //实现全局混入
+        Vue.mixin(myMixin);
+        
+        //声明vue实例
+        var vm=new Vue({
+            el:"#app",
+            data() {
+                return {
+                    list:["item","item"]
+                }
+            },
+            methods: {
+                addItem(){
+                    this.list.push("item")
+                }
+            },
+        })
+    </script>
+</body>
+</html>

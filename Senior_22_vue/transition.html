@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .list-item {
+            display: inline-block;
+            margin: 0 10px;
+            transition: all 0.5s;
+        }
+
+        .list-enter,
+        .list-leave-to {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .list-leave-active
+        {
+            position: absolute;
+        }
+        .list-move{
+            transition: transform 1s;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+            <button @click="addItem">add</button>
+            <button @click="removeItem">remove</button>
+            <div></div>
+        <transition-group name="list">
+            <span class="list-item" v-for="(item,index) in list" :key="item">
+                {{item}}
+            </span>
+        </transition-group>
+
+    </div>
+    <script>
+        //声明vue实例
+        var vm = new Vue({
+            el: "#app",
+            data() {
+                return {
+                    list: [1, 2, 3, 4, 5]
+                }
+            },
+            methods: {
+                addItem() {
+                    var index = Math.floor(this.list.length * Math.random());
+                    var num = Math.floor(100 * Math.random());
+                    this.list.splice(index, 0, num);
+                    // this.list.push("item")
+                },
+                removeItem() {
+                    var index = Math.floor(this.list.length * Math.random());
+                    this.list.splice(index, 1);
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

@@ -12,49 +12,105 @@
 <body>
 
   <script>
-    function ListNode(val) {
-      this.val = val;
-      this.next = null;
-    }
+    /**
+  * @param {number} num
+  * @return {string}
+  */
+    var intToRoman = function (num) {
 
-    var addTwoNumbers = function (l1, l2) {
-      var listHead = new ListNode(0);
-      var listNode = listHead;
-      while (l1 || l2) {
-        let num1 = l1 ? l1.val : 0;
-        let num2 = l2 ? l2.val : 0;
-        listNode.val += num1;
-        listNode.val += num2;
-        l1=l1&&l1.next?l1.next:null;
-        l2=l2&&l2.next?l2.next:null;
-        if (listNode.val >= 10) {
-          listNode.val %= 10;
-          listNode.next = new ListNode(1);
-        }
-        else {
-          if (l1 || l2) {
-            listNode.next = new ListNode(0);
+      //保存分解
+      var obj = {
+        I: 0,
+        V: 0,
+        X: 0,
+        L: 0,
+        C: 0,
+        D: 0,
+        M: 0
+      }
+      //获取分解
+      obj.M = Math.floor(num / 1000);
+      num %= 1000;
+      obj.D = Math.floor(num / 500);
+      num %= 500;
+      obj.C = Math.floor(num / 100);
+      num %= 100;
+      obj.L = Math.floor(num / 50);
+      num %= 50;
+      obj.X = Math.floor(num / 10);
+      num %= 10;
+      obj.V = Math.floor(num / 5);
+      num %= 5;
+      obj.I = num;
+      //提取分解
+      var s = "";
+      while (obj.M) {
+        s += "M";
+        obj.M--;
+      }
+      while (obj.D) {
+        s += "D";
+        obj.D--;
+      }
+      while (obj.C) {
+        if (obj.C == 4) {
+          if (s[s.length - 1] == "D") {//如果是900，则换掉D，改成CM
+            s[s.length - 1] == "C";
+            s = s.substr(0, s.length - 1) + "CM";
+          } else {//如果是400，则加上CD
+            s += "CD";
           }
+          //退出循环，清空obj.C
+          obj.C = 0;
+          break;
         }
-        listNode = listNode.next;
+        s += "C";
+        obj.C--;
+
+      }
+      while (obj.L) {
+        s += "L";
+        obj.L--;
+      }
+      while (obj.X) {
+        if (obj.X == 4) {
+          if (s[s.length - 1] == "L") {//如果是90，则换掉L，改成XC
+            s = s.substr(0, s.length - 1) + "XC"
+          } else {//如果是40.则加上XL
+            s += "XL";
+          }
+          //退出循环，清空obj.X
+          obj.X = 0;
+          break;
+        }
+        s += "X";
+        obj.X--;
+      }
+      while (obj.V) {
+        s += "V";
+        obj.V--;
       }
 
-      return listHead;
+      while (obj.I) {
+        if (obj.I == 4) {
+          if (s[s.length - 1] == "V") {//如果是9，则换掉V，改成IX
+            s = s.substr(0, s.length - 1) + "IX";
+
+            console.log(s);
+          } else {//如果是4，则加上IV
+            s += "IV";
+
+          }
+          obj.I = 0;
+          break;
+        }
+        s += "I";
+        obj.I--;
+      }
+      return s;
+
     };
-
-    var l1=new ListNode(2);
-    var node=l1;
-    node.next=new ListNode(4);
-    node=node.next;
-    node.next=new ListNode(3);
-
-    var l2=new ListNode(5);
-    var node=l2;
-    node.next=new ListNode(6);
-    node=node.next;
-    node.next=new ListNode(4);
-
-    var l3=addTwoNumbers(l1,l2);
+    console.log(intToRoman(9));
   </script>
 </body>
 
