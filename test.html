@@ -6,112 +6,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
 <body>
-
   <script>
-    /**
-  * @param {number} num
-  * @return {string}
-  */
-    var intToRoman = function (num) {
-
-      //保存分解
-      var obj = {
-        I: 0,
-        V: 0,
-        X: 0,
-        L: 0,
-        C: 0,
-        D: 0,
-        M: 0
-      }
-      //获取分解
-      obj.M = Math.floor(num / 1000);
-      num %= 1000;
-      obj.D = Math.floor(num / 500);
-      num %= 500;
-      obj.C = Math.floor(num / 100);
-      num %= 100;
-      obj.L = Math.floor(num / 50);
-      num %= 50;
-      obj.X = Math.floor(num / 10);
-      num %= 10;
-      obj.V = Math.floor(num / 5);
-      num %= 5;
-      obj.I = num;
-      //提取分解
-      var s = "";
-      while (obj.M) {
-        s += "M";
-        obj.M--;
-      }
-      while (obj.D) {
-        s += "D";
-        obj.D--;
-      }
-      while (obj.C) {
-        if (obj.C == 4) {
-          if (s[s.length - 1] == "D") {//如果是900，则换掉D，改成CM
-            s[s.length - 1] == "C";
-            s = s.substr(0, s.length - 1) + "CM";
-          } else {//如果是400，则加上CD
-            s += "CD";
-          }
-          //退出循环，清空obj.C
-          obj.C = 0;
-          break;
+ /**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+var mergeTwoLists = function(l1, l2) {
+    if(!l1){
+        return l2;
+    }else if(!l2){
+        return l1;
+    }
+    var node=new ListNode();
+    var res=node;
+    while(l1&&l2){
+        if(l1.val<=l2.val){
+            node.val=l1.val;
+            l1=l1.next;
+            
+        }else{
+            node.val=l2.val;
+            l2=l2.next;
         }
-        s += "C";
-        obj.C--;
-
-      }
-      while (obj.L) {
-        s += "L";
-        obj.L--;
-      }
-      while (obj.X) {
-        if (obj.X == 4) {
-          if (s[s.length - 1] == "L") {//如果是90，则换掉L，改成XC
-            s = s.substr(0, s.length - 1) + "XC"
-          } else {//如果是40.则加上XL
-            s += "XL";
-          }
-          //退出循环，清空obj.X
-          obj.X = 0;
-          break;
-        }
-        s += "X";
-        obj.X--;
-      }
-      while (obj.V) {
-        s += "V";
-        obj.V--;
-      }
-
-      while (obj.I) {
-        if (obj.I == 4) {
-          if (s[s.length - 1] == "V") {//如果是9，则换掉V，改成IX
-            s = s.substr(0, s.length - 1) + "IX";
-
-            console.log(s);
-          } else {//如果是4，则加上IV
-            s += "IV";
-
-          }
-          obj.I = 0;
-          break;
-        }
-        s += "I";
-        obj.I--;
-      }
-      return s;
-
-    };
-    console.log(intToRoman(9));
+        node.next=new ListNode();
+        node=node.next;
+    }
+    if(l1){
+        node.val=l1.val;
+        node.next=l1.next;
+    }else if(l2){
+        node.val=l2.val;
+        node.next=l2.next;
+    }
+    return res;
+    
+}; 
   </script>
+
 </body>
 
 </html>
