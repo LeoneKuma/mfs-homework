@@ -2,57 +2,67 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
 </head>
 
 <body>
-  <script>
- /**
- * Definition for singly-linked list.
- * function ListNode(val) {
- *     this.val = val;
- *     this.next = null;
- * }
- */
-/**
- * @param {ListNode} l1
- * @param {ListNode} l2
- * @return {ListNode}
- */
-var mergeTwoLists = function(l1, l2) {
-    if(!l1){
-        return l2;
-    }else if(!l2){
-        return l1;
-    }
-    var node=new ListNode();
-    var res=node;
-    while(l1&&l2){
-        if(l1.val<=l2.val){
-            node.val=l1.val;
-            l1=l1.next;
-            
-        }else{
-            node.val=l2.val;
-            l2=l2.next;
+    <script>
+        function ListNode(val) {
+            this.val = val;
+            this.next = null;
         }
-        node.next=new ListNode();
+        var swapPairs = function (head) {
+            if (!head || !head.next) { //没有节点或只有一个节点
+                return head
+            }
+            var res = head.next;
+            var preNode;
+            var aftNode = head.next.next;
+            var fNode = head;
+            var sNode = head.next;
+            var count=0;
+            while (1) {
+                console.log("start");
+                fNode.next = aftNode;
+                sNode.next = fNode;
+                if (preNode) {
+                    preNode.next = sNode;
+                }
+                //前进两个节点，此时fNode和sNode在链表中的位置已经变化了
+                preNode = fNode;
+                if (!fNode.next) {
+                    break;
+                } else {
+                    fNode = fNode.next;
+                }
+                if (!fNode.next) {
+                    break;
+                } else {
+                    sNode = fNode.next;
+                }
+                aftNode = sNode.next;
+                console.log(count++);
+            }
+            return res;
+
+        };
+        var head=new ListNode(1);
+        var node=head;
+        node.next=new ListNode(2);
         node=node.next;
-    }
-    if(l1){
-        node.val=l1.val;
-        node.next=l1.next;
-    }else if(l2){
-        node.val=l2.val;
-        node.next=l2.next;
-    }
-    return res;
-    
-}; 
-  </script>
+        node.next=new ListNode(3);
+        node=node.next;
+        node.next=new ListNode(4);
+        node=node.next;
+        console.log(swapPairs(head));
+
+        
+
+    </script>
 
 </body>
 
