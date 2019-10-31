@@ -2,9 +2,9 @@
 <template>
   <div>
     <div>{{sum}}</div>
-    <child @inc="inc"></child>
-    <child @inc="inc"></child>
-    <child @inc="inc"></child>
+    <child :psum='sum' @inc="inc"></child>
+    <child :psum='sum' @inc="inc"></child>
+    <child :psum='sum' @inc="inc"></child>
   </div>
 </template>
 

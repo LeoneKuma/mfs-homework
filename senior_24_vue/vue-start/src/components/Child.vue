@@ -7,6 +7,9 @@
 <script>
 export default {
   name: 'Child',
+  props: [
+    'psum'
+  ],
   data () {
     return {
       sum: 0
@@ -16,6 +19,7 @@ export default {
     inc () {
       this.sum++
       this.$emit('inc')
+      console.log(this.psum)
     }
   }
 }
