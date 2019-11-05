@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "say-hello":"echo \"hello world\""
   },
   "dependencies": {
     "core-js": "^3.3.2",
