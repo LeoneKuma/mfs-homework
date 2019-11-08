@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var {floor}=Math;
+        /**归并排序
+         * @param {number[]} arr
+         * @param {String} [method="asc"] 默认升序，传入des为降序
+         * @param {number} left
+         * @param {number} right
+         * @param {number} mid
+         * @return {number[]}
+         */
+        function mergeSort(arr, method = "asc", left = 0, right = arr.length - 1,mid =floor((right + left) / 2)) {
+           var res=[];
+            if (right - left <= 0) {
+                res.push(arr[left]);
+                return res
+            }
+            var res1=mergeSort(arr, method, left, mid);
+            var res2=mergeSort(arr, method, mid + 1, right);
+            //合并两个子序列
+            var i_left = 0;
+            var i_right = res1.length-1;
+            var j_left = 0;
+            var j_right = res2.length-1;
+
+            while (i_left <= i_right && j_left <= j_right) {
+                if (method == "asc") {
+                    if (res1[i_left] < res2[j_left]) {
+                        res.push(res1[i_left]);
+                        i_left++;
+                    } else {
+                        res.push(res2[j_left]);
+                        j_left++;
+                    }
+                } else if (method == "des") {
+                    if (res1[i_left] > res2[j_left]) {
+                        res.push(res1[i_left]);
+                        i_left++;
+                    } else {
+                        res.push(res2[j_left]);
+                        j_left++;
+                    }
+                } else {
+                    throw new Error("Unknown sort method")
+                }
+            }
+            //剩下部分拼接起来
+            if(i_left > i_right){
+                while(j_left<=j_right){
+                    res.push(res2[j_left]);
+                    j_left++
+                }
+            }else if(j_left>j_right){
+                while(i_left<=i_right){
+                    res.push(res1[i_left]);
+                    i_left++
+                }
+            }
+
+            return res;
+        }
+        var arr = [8,5,4,2,7,9,0,1,3,6]
+        console.log(arr);
+        console.log(mergeSort(arr));
+    </script>
+</body>
+
+</html>
