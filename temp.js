@@ -1,42 +1,38 @@
 /**
- * @param {number[]} nums
+ * @param {number[]} arr
+ * @param {number[]} ans
+ * @param {number[]} res
  * @param {number} target
+ * @param {number} index
  * @return {number}
  */
-var searchInsert = function(nums, target) {
-    if(nums.length==0){
-        return nums
+var search=function(arr,ans,res,target,index){
+    if(target==0){ //
+        var [...temp]=ans
+        res.push(temp);
+        return 
     }
-    var left=0;
-    var right=nums.length-1;
-    if(left==right){
-        if(nums[0]<target){
-            return 1
-        }else{
-            return 0
-        }
+    if(target<0){
+        return;
     }
-    while(left<right){
-        var mid=Math.floor((left+right)/2);
-        if(nums[mid]==target){
-            while(nums[mid]==target){
-                mid--;
-            }
-            return mid+1;
-        }else if(nums[mid]<target){
-            if(right-left==1){
-                if(nums[right]<target){
-                    return right+1;
-                }else{
-                    return right;
-                }
-            }
-            left=mid;
-        }else if(nums[mid]>target){
-            right=mid;
-        }
+    for(var i=index;target>=arr[i]&&i<arr.length;i++){
+        ans.push(arr[i]);
+        search(arr,ans,res,target-arr[i],i);
+        ans.pop();
     }
-    return left;
+}
+/**
+ * @param {number[]} candidates
+ * @param {number} target
+ * @return {number[][]}
+ */
+var combinationSum = function(candidates, target) {
+    candidates.sort((a,b)=>a-b);
+    var ans=[];
+    var res=[];
+    search(candidates,ans,res,target,0);
+    return res;    
 };
-var arr=[1,3,5,5];
-console.log(searchInsert(arr,4));
+var arr=[2,5,2,1,2];
+var target=5;
+console.log(combinationSum(arr,target));
