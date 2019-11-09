@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+  <style>
+    select {
+      width: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <form action="/set-userinfo">
+    <div class="select">
+      <label>省/直辖市：</label>
+      <select name="province" id="province">
+        <option value="-1" selected>--请选择--</option>
+      </select>
+      <label>市：</label>
+      <select name="city" id="city">
+        <option value="-1" selected>--请选择--</option>
+      </select>
+      <label>区/县：</label>
+      <select name="district" id="district">
+        <option value="-1" selected>--请选择--</option>
+      </select>
+
+    </div>
+  </form>
+  <script>
+    function createOption(name) {
+      var ele = document.createElement("option");
+      ele.setAttribute("value", name);
+      ele.innerText = name;
+      return ele;
+    }
+    function clearOptions($node) {
+      $node.empty();
+      var ele = document.createElement("option");
+      ele.setAttribute("value", -1);
+      ele.innerText = "--请选择--";
+      $node.append(ele);
+    }
+    function appendOptions($node, dataArry) {
+      clearOptions($node);
+      for (x in dataArry) {
+        var ele = createOption(dataArry[x]);
+        $node.append(ele);
+      }
+    }
+    function initForm() {
+      //先初始化省份/直辖市
+      $.ajax({
+        url: "http://127.0.0.1:3000/get-provinces",
+        method: "get",
+        dataType: "json",
+        success: function (data) {
+          appendOptions($("#province"), data.data);
+        }
+      })
+    }
+
+    //选择了省份后触发下列事件
+    $("#province").on("change", function () {
+      console.log("province is selected");
+      clearOptions($("#city"));
+      clearOptions($("#district"));
+      $.ajax({
+        url: "http://127.0.0.1:3000/get-citys",
+        method: "get",
+        dataType: "json",
+        data: { provinceName: $("#province").val() },
+        success: function (data) {
+          appendOptions($("#city"), data.data);
+        }
+      })
+    })
+    $("#city").on("change", function () {
+      console.log("city is selected");
+      clearOptions($("#district"));
+      $.ajax({
+        url: "http://127.0.0.1:3000/get-districts",
+        method: "get",
+        dataType: "json",
+        data: {
+          provinceName: $("#province").val(),
+          cityName: $("#city").val()
+        },
+        success: function (data) {
+          appendOptions($("#district"), data.data);
+        }
+      })
+    })
+    initForm();
+  </script>
+</body>
+
+</html>
